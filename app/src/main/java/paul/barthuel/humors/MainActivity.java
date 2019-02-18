@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements
 
     ImageView smiley;
     RelativeLayout mainRelativeLayout;
+    int smileyCount;
 
     // Called when the activity is first created.
     @Override
@@ -51,8 +52,48 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
         Log.d(DEBUG_TAG, "onFling: " + velocityY);
-        smiley.setImageResource(R.drawable.smiley_happy);
-        mainRelativeLayout.setBackgroundResource(R.color.light_sage);
+        if(smileyCount == 0) {
+            if(velocityY > 0) {
+                smiley.setImageResource(R.drawable.smiley_happy);
+                mainRelativeLayout.setBackgroundResource(R.color.light_sage);
+                smileyCount = 1;
+            }
+        } else if(smileyCount == 1) {
+            if(velocityY > 0) {
+                smiley.setImageResource(R.drawable.smiley_normal);
+                mainRelativeLayout.setBackgroundResource(R.color.cornflower_blue_65);
+                smileyCount = 2;
+            }else {
+                smiley.setImageResource(R.drawable.smiley_super_happy);
+                mainRelativeLayout.setBackgroundResource(R.color.banana_yellow);
+                smileyCount = 0;
+            }
+        }else if(smileyCount == 2){
+            if(velocityY > 0) {
+                smiley.setImageResource(R.drawable.smiley_disappointed);
+                mainRelativeLayout.setBackgroundResource(R.color.warm_grey);
+                smileyCount = 3;
+            }else {
+                smiley.setImageResource(R.drawable.smiley_happy);
+                mainRelativeLayout.setBackgroundResource(R.color.light_sage);
+                smileyCount = 1;
+            }
+        }else if(smileyCount == 3) {
+            if(velocityY > 0) {
+                smiley.setImageResource(R.drawable.smiley_sad);
+                mainRelativeLayout.setBackgroundResource(R.color.faded_red);
+                smileyCount = 4;
+            }else {
+                smiley.setImageResource(R.drawable.smiley_normal);
+                mainRelativeLayout.setBackgroundResource(R.color.cornflower_blue_65);
+                smileyCount = 2;
+            }
+        }else if(smileyCount == 4) {
+            if (velocityY < 0) {
+                smiley.setImageResource(R.drawable.smiley_disappointed);
+                mainRelativeLayout.setBackgroundResource(R.color.warm_grey);
+            }
+        }
         return true;
     }
 
