@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity implements
                            float velocityX, float velocityY) {
         Log.d(DEBUG_TAG, "onFling: " + velocityY);
         if(smileyCount == 0) {
-            if(velocityY > 0) {
+            if(velocityY < 0) {
                 smiley.setImageResource(R.drawable.smiley_happy);
                 mainRelativeLayout.setBackgroundResource(R.color.light_sage);
                 smileyCount = 1;
             }
         } else if(smileyCount == 1) {
-            if(velocityY > 0) {
+            if(velocityY < 0) {
                 smiley.setImageResource(R.drawable.smiley_normal);
                 mainRelativeLayout.setBackgroundResource(R.color.cornflower_blue_65);
                 smileyCount = 2;
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements
                 smileyCount = 0;
             }
         }else if(smileyCount == 2){
-            if(velocityY > 0) {
+            if(velocityY < 0) {
                 smiley.setImageResource(R.drawable.smiley_disappointed);
                 mainRelativeLayout.setBackgroundResource(R.color.warm_grey);
                 smileyCount = 3;
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements
                 smileyCount = 1;
             }
         }else if(smileyCount == 3) {
-            if(velocityY > 0) {
+            if(velocityY < 0) {
                 smiley.setImageResource(R.drawable.smiley_sad);
                 mainRelativeLayout.setBackgroundResource(R.color.faded_red);
                 smileyCount = 4;
@@ -89,9 +89,10 @@ public class MainActivity extends AppCompatActivity implements
                 smileyCount = 2;
             }
         }else if(smileyCount == 4) {
-            if (velocityY < 0) {
+            if (velocityY > 0) {
                 smiley.setImageResource(R.drawable.smiley_disappointed);
                 mainRelativeLayout.setBackgroundResource(R.color.warm_grey);
+                smileyCount = 3;
             }
         }
         return true;
