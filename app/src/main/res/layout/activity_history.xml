@@ -1,9 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HistoryActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/history_iv_day7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/banana_yellow" />
+
+        <TextView
+            android:id="@+id/history_tv_day7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Day 7" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/history_iv_day6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/light_sage" />
+
+        <TextView
+            android:id="@+id/history_tv_day6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Day 6" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/history_iv_day5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cornflower_blue_65" />
+
+        <TextView
+            android:id="@+id/history_tv_day5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Day5" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/history_iv_day4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/warm_grey" />
+
+        <TextView
+            android:id="@+id/history_tv_day4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Day4" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/history_iv_day3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cornflower_blue_65" />
+
+        <TextView
+            android:id="@+id/history_tv_day3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Day 3" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/history_iv_day2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/faded_red" />
+
+        <TextView
+            android:id="@+id/history_tv_day2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Day 2" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/history_iv_day1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/warm_grey" />
+
+        <TextView
+            android:id="@+id/history_tv_day1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Day 1" />
+
+    </FrameLayout>
+
+</LinearLayout>
