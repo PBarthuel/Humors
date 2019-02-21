@@ -14,6 +14,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
+import org.threeten.bp.LocalDateTime;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements
         GestureDetector.OnGestureListener {
@@ -32,14 +39,21 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AndroidThreeTen.init(this);
+
         setContentView(R.layout.activity_main);
+
         //Initialize the images from the layout
         smiley = findViewById(R.id.main_iv_smiley);
         smiley.setImageResource(currentMood.getDrawableRes());
+
         mainRelativeLayout = findViewById(R.id.main_rl_parent);
         mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
+
         mCommentButton = findViewById(R.id.main_iv_comment);
         mHistoryButton = findViewById(R.id.main_iv_history);
+
         // Instantiate the gesture detector with the
         // application context and an implementation of
         // GestureDetector.OnGestureListener
@@ -60,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        String humorMessage;
+                        humorMessage = input.getText().toString();
                     }
                 })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -100,49 +115,6 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
         Log.d(DEBUG_TAG, "onFling: " + velocityY);
-        /*if (smileyCount == 0) {
-            if (velocityY < 0) {
-                smiley.setImageResource(R.drawable.smiley_happy);
-                mainRelativeLayout.setBackgroundResource(R.color.light_sage);
-                smileyCount = 1;
-            }
-        } else if (smileyCount == 1) {
-            if (velocityY < 0) {
-                smiley.setImageResource(R.drawable.smiley_normal);
-                mainRelativeLayout.setBackgroundResource(R.color.cornflower_blue_65);
-                smileyCount = 2;
-            } else {
-                smiley.setImageResource(R.drawable.smiley_super_happy);
-                mainRelativeLayout.setBackgroundResource(R.color.banana_yellow);
-                smileyCount = 0;
-            }
-        } else if (smileyCount == 2) {
-            if (velocityY < 0) {
-                smiley.setImageResource(R.drawable.smiley_disappointed);
-                mainRelativeLayout.setBackgroundResource(R.color.warm_grey);
-                smileyCount = 3;
-            } else {
-                smiley.setImageResource(R.drawable.smiley_happy);
-                mainRelativeLayout.setBackgroundResource(R.color.light_sage);
-                smileyCount = 1;
-            }
-        } else if (smileyCount == 3) {
-            if (velocityY < 0) {
-                smiley.setImageResource(R.drawable.smiley_sad);
-                mainRelativeLayout.setBackgroundResource(R.color.faded_red);
-                smileyCount = 4;
-            } else {
-                smiley.setImageResource(R.drawable.smiley_normal);
-                mainRelativeLayout.setBackgroundResource(R.color.cornflower_blue_65);
-                smileyCount = 2;
-            }
-        } else if (smileyCount == 4) {
-            if (velocityY > 0) {
-                smiley.setImageResource(R.drawable.smiley_disappointed);
-                mainRelativeLayout.setBackgroundResource(R.color.warm_grey);
-                smileyCount = 3;
-            }
-        } */
         boolean getHappier = velocityY < 0;
         if(getHappier){
             currentMood = Mood.values()[currentMood.ordinal()-1];
