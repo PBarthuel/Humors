@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity implements
     public static final int GAME_ACTIVITY_REQUEST_CODE = 1;
     ImageView smiley;
     RelativeLayout mainRelativeLayout;
-    int smileyCount;
+    //int smileyCount;
+    Mood currentMood = Mood.HAPPY;
     ImageView mCommentButton;
     ImageView mHistoryButton;
 
@@ -32,10 +33,11 @@ public class MainActivity extends AppCompatActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Initialize the images from the layout
         smiley = findViewById(R.id.main_iv_smiley);
-        smiley.setImageResource(R.drawable.smiley_super_happy);
+        smiley.setImageResource(currentMood.getDrawableRes());
         mainRelativeLayout = findViewById(R.id.main_rl_parent);
-        mainRelativeLayout.setBackgroundResource(R.color.banana_yellow);
+        mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
         mCommentButton = findViewById(R.id.main_iv_comment);
         mHistoryButton = findViewById(R.id.main_iv_history);
         // Instantiate the gesture detector with the
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
         Log.d(DEBUG_TAG, "onFling: " + velocityY);
-        if (smileyCount == 0) {
+        /*if (smileyCount == 0) {
             if (velocityY < 0) {
                 smiley.setImageResource(R.drawable.smiley_happy);
                 mainRelativeLayout.setBackgroundResource(R.color.light_sage);
@@ -140,7 +142,15 @@ public class MainActivity extends AppCompatActivity implements
                 mainRelativeLayout.setBackgroundResource(R.color.warm_grey);
                 smileyCount = 3;
             }
+        } */
+        boolean getHappier = velocityY < 0;
+        if(getHappier){
+            currentMood = Mood.values()[currentMood.ordinal()-1];
+        }else {
+            currentMood = Mood.values()[currentMood.ordinal()+1];
         }
+        smiley.setImageResource(currentMood.getDrawableRes());
+        mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
         return true;
     }
 
@@ -152,7 +162,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onScroll(MotionEvent event1, MotionEvent event2, float distanceX,
                             float distanceY) {
-        Log.d(DEBUG_TAG, "onScroll: " + event1.toString() + event2.toString());
         return true;
     }
 
