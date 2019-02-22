@@ -14,13 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
-
-import org.threeten.bp.LocalDateTime;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements
         GestureDetector.OnGestureListener {
@@ -30,8 +25,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final int GAME_ACTIVITY_REQUEST_CODE = 1;
     ImageView smiley;
     RelativeLayout mainRelativeLayout;
-    //int smileyCount;
-    Mood currentMood = Mood.HAPPY;
+    Mood currentMood = Mood.SUPER_HAPPY;
     ImageView mCommentButton;
     ImageView mHistoryButton;
 
@@ -118,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements
         boolean getHappier = velocityY < 0;
         if(getHappier){
             currentMood = Mood.values()[currentMood.ordinal()-1];
-        }else {
+        }else  {
             currentMood = Mood.values()[currentMood.ordinal()+1];
         }
         smiley.setImageResource(currentMood.getDrawableRes());
