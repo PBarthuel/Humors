@@ -25,15 +25,12 @@ public class MainActivity extends AppCompatActivity implements
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
     public static final int HISTORY_ACTIVITY_REQUEST_CODE = 1;
-
     ImageView smiley;
     RelativeLayout mainRelativeLayout;
     Mood currentMood = Mood.SUPER_HAPPY;
     ImageView mCommentButton;
     ImageView mHistoryButton;
-    int fesse = 0;
-
-
+    MoodDao moodDao;
 
     // Called when the activity is first created.
     @Override
@@ -41,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
 
         AndroidThreeTen.init(this);
+
+        moodDao = new MoodDao(this);
 
         setContentView(R.layout.activity_main);
 
@@ -53,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements
 
         mCommentButton = findViewById(R.id.main_iv_comment);
         mHistoryButton = findViewById(R.id.main_iv_history);
-
-        
 
         // Instantiate the gesture detector with the
         // application context and an implementation of
@@ -76,8 +73,7 @@ public class MainActivity extends AppCompatActivity implements
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String humorMessage;
-                        humorMessage = input.getText().toString();
+                        moodDao.insertTodayMood(new DailyMood(currentMood, input.getText().toString()));
                     }
                 })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -125,12 +121,13 @@ public class MainActivity extends AppCompatActivity implements
         }
         if (ordinalMood < 0) {
             ordinalMood = 0;
-        }else if (ordinalMood > Mood.values().length - 1){
+        }else if (ordinalMood > Mood.values().length - 1) {
             ordinalMood = Mood.values().length - 1;
         }
         currentMood = Mood.values()[ordinalMood];
         smiley.setImageResource(currentMood.getDrawableRes());
         mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
+        Toast.makeText(this, moodDao.getDailyMood().getMood().name(), Toast.LENGTH_SHORT).show();
         return true;
     }
 
