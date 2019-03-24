@@ -1,26 +1,54 @@
 package paul.barthuel.humors;
 
+import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.Nullable;
 
-import com.google.gson.Gson;
+import org.threeten.bp.LocalDateTime;
 
-public class MoodDao {
 
-    private static final String KEY_COMMENT = "KEY_COMMENT";
-    SharedPreferences mPreferences;
+public class MoodDao extends SQLiteOpenHelper {
+
+    private static final String TABLE_NAME = "user_history";
+    private static final String COLUMN_COMMENT = "comment";
+    private static final String COLUMN_MOOD = "mood";
+    private static final String COLUMN_DATE = "date";
 
     public MoodDao (Context context) {
-        mPreferences = context.getSharedPreferences("user_history", Context.MODE_PRIVATE);
+        super(context, TABLE_NAME, null, 1);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" DATE)");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
     }
 
     public void insertTodayMood(DailyMood dailyMood) {
-        String serialized = new Gson().toJson(dailyMood);
-        mPreferences.edit().putString(KEY_COMMENT, serialized).apply();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_COMMENT, dailyMood.getComment());
+        contentValues.put(COLUMN_MOOD, dailyMood.getMood().name());
+        contentValues.put(COLUMN_DATE, LocalDateTime.now().toString());
+        getWritableDatabase().insert(TABLE_NAME, null, contentValues);
     }
 
+    @Nullable
     public DailyMood getDailyMood() {
-        String serialized = mPreferences.getString(KEY_COMMENT, null);
-        return new Gson().fromJson(serialized, DailyMood.class);
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, COLUMN_DATE+" DESC", "1");
+        if(cursor.moveToFirst()) {
+            String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
+            Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
+            cursor.close();
+            return new DailyMood(mood, comment);
+        }else {
+            return null;
+        }
     }
 }

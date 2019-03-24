@@ -2,7 +2,6 @@ package paul.barthuel.humors;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements
         AndroidThreeTen.init(this);
 
         moodDao = new MoodDao(this);
+
+        Toast.makeText(this, ""+moodDao.getDailyMood(), Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_main);
 
@@ -127,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements
         currentMood = Mood.values()[ordinalMood];
         smiley.setImageResource(currentMood.getDrawableRes());
         mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
-        Toast.makeText(this, moodDao.getDailyMood().getMood().name(), Toast.LENGTH_SHORT).show();
         return true;
     }
 
