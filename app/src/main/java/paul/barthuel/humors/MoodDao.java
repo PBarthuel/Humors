@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
-import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalDate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MoodDao extends SQLiteOpenHelper {
@@ -23,7 +26,7 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" DATE)");
+        db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" DATE UNIQUE)");
     }
 
     @Override
@@ -35,7 +38,7 @@ public class MoodDao extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_COMMENT, dailyMood.getComment());
         contentValues.put(COLUMN_MOOD, dailyMood.getMood().name());
-        contentValues.put(COLUMN_DATE, LocalDateTime.now().toString());
+        contentValues.put(COLUMN_DATE, LocalDate.now().toString());
         getWritableDatabase().insert(TABLE_NAME, null, contentValues);
     }
 
@@ -50,5 +53,17 @@ public class MoodDao extends SQLiteOpenHelper {
         }else {
             return null;
         }
+    }
+
+    public List<DailyMood> readSevenDaysHistory() {
+        List<DailyMood> humors = new ArrayList<>();
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, COLUMN_DATE+" DESC", "7");
+        while (cursor.moveToNext()) {
+            String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
+            Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
+            humors.add(new DailyMood(mood, comment));
+        }
+        cursor.close();
+        return humors;
     }
 }

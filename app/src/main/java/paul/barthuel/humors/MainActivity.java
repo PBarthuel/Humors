@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements
 
         moodDao = new MoodDao(this);
 
-        Toast.makeText(this, ""+moodDao.getDailyMood(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "" + moodDao.getDailyMood(), Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_main);
 
@@ -68,15 +68,18 @@ public class MainActivity extends AppCompatActivity implements
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
+                if(input ) {
+                    input.setText(moodDao.getDailyMood().getComment());
+                }
                 input.setLayoutParams(lp);
-                builder.setView(input);
-                builder.setTitle("Enter your commentary :D");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        moodDao.insertTodayMood(new DailyMood(currentMood, input.getText().toString()));
-                    }
-                })
+                builder.setView(input)
+                        .setTitle("Enter your commentary :D")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                moodDao.insertTodayMood(new DailyMood(currentMood, input.getText().toString()));
+                            }
+                        })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -116,13 +119,13 @@ public class MainActivity extends AppCompatActivity implements
         boolean getHappier = velocityY < 0;
         int ordinalMood;
         if (getHappier) {
-            ordinalMood = currentMood.ordinal()+1;
-        }else {
-            ordinalMood = currentMood.ordinal()-1;
+            ordinalMood = currentMood.ordinal() + 1;
+        } else {
+            ordinalMood = currentMood.ordinal() - 1;
         }
         if (ordinalMood < 0) {
             ordinalMood = 0;
-        }else if (ordinalMood > Mood.values().length - 1) {
+        } else if (ordinalMood > Mood.values().length - 1) {
             ordinalMood = Mood.values().length - 1;
         }
         currentMood = Mood.values()[ordinalMood];

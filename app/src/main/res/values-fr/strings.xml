@@ -4,5 +4,5 @@
     <string name="content_description_smiley">smiley</string>
     <string name="content_description_comment_humors">comment humors</string>
     <string name="content_description_acces_history">acces history</string>
-    <string name="day_7">acces day7</string>
+    <string name="seven_days_ago">il y a 7 jours</string>
 </resources>
