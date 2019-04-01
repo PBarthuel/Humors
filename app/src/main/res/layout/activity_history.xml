@@ -20,8 +20,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_comment_black_36dp"
             android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            />
+            android:padding="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,122 +31,140 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/history_fl_6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:background="@color/faded_red">
 
         <ImageView
             android:id="@+id/history_iv_day6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/light_sage" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:layout_gravity="center_vertical|end"
+            android:padding="16dp" />
 
         <TextView
-            android:id="@+id/history_tv_day6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            tools:text="Day 6" />
+            android:text="@string/six_days_ago" />
 
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/history_fl_5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:background="@color/cornflower_blue_65">
 
         <ImageView
             android:id="@+id/history_iv_day5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/cornflower_blue_65" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:layout_gravity="center_vertical|end"
+            android:padding="16dp" />
 
         <TextView
-            android:id="@+id/history_tv_day5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            tools:text="Day5" />
+            android:text="@string/five_days_ago" />
 
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/history_fl_4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:background="@color/warm_grey">
 
         <ImageView
             android:id="@+id/history_iv_day4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/warm_grey" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:layout_gravity="center_vertical|end"
+            android:padding="16dp" />
 
         <TextView
-            android:id="@+id/history_tv_day4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            tools:text="Day4" />
+            android:text="@string/four_days_ago" />
 
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/history_fl_3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:background="@color/banana_yellow">
 
         <ImageView
             android:id="@+id/history_iv_day3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/cornflower_blue_65" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:layout_gravity="center_vertical|end"
+            android:padding="16dp" />
 
         <TextView
-            android:id="@+id/history_tv_day3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            tools:text="Day 3" />
+            android:text="@string/three_days_ago" />
 
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/history_fl_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:background="@color/faded_red">
 
         <ImageView
             android:id="@+id/history_iv_day2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/faded_red" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:layout_gravity="center_vertical|end"
+            android:padding="16dp" />
 
         <TextView
-            android:id="@+id/history_tv_day2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            tools:text="Day 2" />
+            android:text="@string/two_days_ago" />
 
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/history_fl_1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:background="@color/warm_grey">
 
         <ImageView
             android:id="@+id/history_iv_day1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/warm_grey" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:layout_gravity="center_vertical|end"
+            android:padding="16dp" />
 
         <TextView
-            android:id="@+id/history_tv_day1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            tools:text="Day 1" />
+            android:text="@string/one_days_ago" />
 
     </FrameLayout>
 

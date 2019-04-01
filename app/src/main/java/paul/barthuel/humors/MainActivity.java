@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity implements
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
-                if(input ) {
+                /*if(input ) {
                     input.setText(moodDao.getDailyMood().getComment());
-                }
+                }  */
                 input.setLayoutParams(lp);
                 builder.setView(input)
                         .setTitle("Enter your commentary :D")
