@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,9 +60,16 @@ public class MoodDao extends SQLiteOpenHelper {
         contentValues.put(COLUMN_COMMENT, dailyMood.getComment());
         contentValues.put(COLUMN_MOOD, dailyMood.getMood().name());
         contentValues.put(COLUMN_DATE, LocalDate.now().toString());
-        if(getDailyMood() != null) {
-            getWritableDatabase().update(TABLE_NAME, contentValues, COLUMN_DATE+" = "+contentValues.get(COLUMN_DATE).toString(), null);
-        }else {
+
+        if (getDailyMood() != null) {
+            // We need to escape the parameter "contentValues.get(COLUMN_DATE)" because if it's not
+            // explicitly considered as a String, I guess maths get in and try to actually compute
+            // the date, like 2019-02-04 would result as 2019 - 02 - 04 which is, mathematically,
+            // equal to 2013.
+            String whereClause = COLUMN_DATE + " = \"" + contentValues.get(COLUMN_DATE) + "\"";
+
+            getWritableDatabase().update(TABLE_NAME, contentValues, whereClause, null);
+        } else {
             getWritableDatabase().insert(TABLE_NAME, null, contentValues);
         }
     }
