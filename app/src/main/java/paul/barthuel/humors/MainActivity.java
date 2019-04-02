@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements
         GestureDetector.OnGestureListener {
 
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        final List<DailyMood> moods = new MoodDao(this).readSevenDaysHistory();
+
         mCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,9 +72,9 @@ public class MainActivity extends AppCompatActivity implements
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
-                /*if(input ) {
-                    input.setText(moodDao.getDailyMood().getComment());
-                }  */
+                if(moods.get(0).getComment() != null) {
+                    input.setText(moods.get(0).getComment());
+                }
                 input.setLayoutParams(lp);
                 builder.setView(input)
                         .setTitle("Enter your commentary :D")
