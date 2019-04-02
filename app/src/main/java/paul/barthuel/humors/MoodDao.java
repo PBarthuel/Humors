@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -26,7 +28,7 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" DATE UNIQUE)");
+        db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" TEXT)");
     }
 
     @Override
@@ -39,7 +41,11 @@ public class MoodDao extends SQLiteOpenHelper {
         contentValues.put(COLUMN_COMMENT, dailyMood.getComment());
         contentValues.put(COLUMN_MOOD, dailyMood.getMood().name());
         contentValues.put(COLUMN_DATE, LocalDate.now().toString());
-        getWritableDatabase().insert(TABLE_NAME, null, contentValues);
+        if(getDailyMood() != null) {
+            getWritableDatabase().update(TABLE_NAME, contentValues, COLUMN_DATE+" = "+contentValues.get(COLUMN_DATE).toString(), null);
+        }else {
+            getWritableDatabase().insert(TABLE_NAME, null, contentValues);
+        }
     }
 
     @Nullable
@@ -64,6 +70,7 @@ public class MoodDao extends SQLiteOpenHelper {
             humors.add(new DailyMood(mood, comment));
         }
         cursor.close();
+        Collections.reverse(humors);
         return humors;
     }
 }

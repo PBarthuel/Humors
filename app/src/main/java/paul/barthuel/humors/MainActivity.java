@@ -63,17 +63,16 @@ public class MainActivity extends AppCompatActivity implements
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        final List<DailyMood> moods = new MoodDao(this).readSevenDaysHistory();
-
         mCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final DailyMood dailyMood = new MoodDao(MainActivity.this).getDailyMood();
                 final EditText input = new EditText(MainActivity.this);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
-                if(moods.get(0).getComment() != null) {
-                    input.setText(moods.get(0).getComment());
+                if(dailyMood != null) {
+                    input.setText(dailyMood.getComment());
                 }
                 input.setLayoutParams(lp);
                 builder.setView(input)
