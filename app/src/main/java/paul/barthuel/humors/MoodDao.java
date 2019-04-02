@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.support.annotation.Nullable;
 
 import org.threeten.bp.LocalDate;
@@ -28,12 +29,31 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        disableWal(db);
+
         db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" TEXT)");
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        disableWal(db);
+
+        super.onOpen(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    private void disableWal(SQLiteDatabase db) {
+        // Disables WAL. We don't need such a dev-unfriendly feature on a simple project.
+        // With this, .wal and .smh files are no longer generated, and the db is easy to extract & open
+        //
+        // Source : https://www.sqlite.org/wal.html
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            db.disableWriteAheadLogging();
+        }
     }
 
     public void insertTodayMood(DailyMood dailyMood) {
