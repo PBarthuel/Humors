@@ -5,12 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.support.annotation.Nullable;
 
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,7 +28,16 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        disableWal(db);
+
         db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" TEXT)");
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        disableWal(db);
+
+        super.onOpen(db);
     }
 
     @Override
@@ -36,14 +45,31 @@ public class MoodDao extends SQLiteOpenHelper {
 
     }
 
+    private void disableWal(SQLiteDatabase db) {
+        // Disables WAL. We don't need such a dev-unfriendly feature on a simple project.
+        // With this, .wal and .smh files are no longer generated, and the db is easy to extract & open
+        //
+        // Source : https://www.sqlite.org/wal.html
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            db.disableWriteAheadLogging();
+        }
+    }
+
     public void insertTodayMood(DailyMood dailyMood) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_COMMENT, dailyMood.getComment());
         contentValues.put(COLUMN_MOOD, dailyMood.getMood().name());
         contentValues.put(COLUMN_DATE, LocalDate.now().toString());
-        if(getDailyMood() != null) {
-            getWritableDatabase().update(TABLE_NAME, contentValues, COLUMN_DATE+" = "+contentValues.get(COLUMN_DATE).toString(), null);
-        }else {
+
+        if (getDailyMood() != null) {
+            // We need to escape the parameter "contentValues.get(COLUMN_DATE)" because if it's not
+            // explicitly considered as a String, I guess maths get in and try to actually compute
+            // the date, like 2019-02-04 would result as 2019 - 02 - 04 which is, mathematically,
+            // equal to 2013.
+            String whereClause = COLUMN_DATE + " = \"" + contentValues.get(COLUMN_DATE) + "\"";
+
+            getWritableDatabase().update(TABLE_NAME, contentValues, whereClause, null);
+        } else {
             getWritableDatabase().insert(TABLE_NAME, null, contentValues);
         }
     }
