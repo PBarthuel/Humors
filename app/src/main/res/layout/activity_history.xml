@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
             android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"/>
+            android:src="@drawable/ic_comment_black_36dp"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,20 +30,22 @@
 
     </FrameLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/history_fl_6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:background="@color/faded_red">
+        tools:background="@color/faded_red"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/history_iv_day6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_comment_black_36dp"
             android:layout_gravity="center_vertical|end"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,7 +53,7 @@
             android:padding="16dp"
             android:text="@string/six_days_ago" />
 
-    </FrameLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/history_fl_5"
@@ -64,9 +66,11 @@
             android:id="@+id/history_iv_day5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_comment_black_36dp"
             android:layout_gravity="center_vertical|end"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,9 +91,10 @@
             android:id="@+id/history_iv_day4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_comment_black_36dp"
             android:layout_gravity="center_vertical|end"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -110,9 +115,10 @@
             android:id="@+id/history_iv_day3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_comment_black_36dp"
             android:layout_gravity="center_vertical|end"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -133,9 +139,10 @@
             android:id="@+id/history_iv_day2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_comment_black_36dp"
             android:layout_gravity="center_vertical|end"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -156,9 +163,10 @@
             android:id="@+id/history_iv_day1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_comment_black_36dp"
             android:layout_gravity="center_vertical|end"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:src="@drawable/ic_comment_black_36dp"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -172,7 +180,7 @@
         android:id="@+id/history_fl_8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.65" >
+        android:layout_weight="0.65">
 
         <ImageView
             android:id="@+id/history_iv_task_bar"
@@ -180,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center"
             android:padding="16dp"
-            android:src="@drawable/ic_history_black_36dp"/>
+            android:src="@drawable/ic_history_black_36dp" />
 
     </FrameLayout>
 

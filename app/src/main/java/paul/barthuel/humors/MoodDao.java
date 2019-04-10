@@ -76,7 +76,7 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Nullable
     public DailyMood getDailyMood() {
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, COLUMN_DATE+" DESC", "1");
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE +" = \""+LocalDate.now().toString() + "\"", null, null, null, COLUMN_DATE+" DESC", "1");
         if(cursor.moveToFirst()) {
             String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
@@ -96,7 +96,6 @@ public class MoodDao extends SQLiteOpenHelper {
             humors.add(new DailyMood(mood, comment));
         }
         cursor.close();
-        Collections.reverse(humors);
         return humors;
     }
 }
