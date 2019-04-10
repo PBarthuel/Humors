@@ -18,8 +18,6 @@ import android.widget.Toast;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity implements
         GestureDetector.OnGestureListener {
 
