@@ -29,20 +29,3 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-}
-
-dependencies {
-    implementation 'com.github.lecho:hellocharts-android:v1.5.8'
-}
-
-dependencies {
-    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
-}
-
-dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:+'
-}

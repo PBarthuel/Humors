@@ -1,5 +1,6 @@
 package paul.barthuel.humors;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ public class HistoryActivity extends AppCompatActivity {
     ImageView mHistoryBtnDay5;
     ImageView mHistoryBtnDay6;
     ImageView mHistoryBtnDay7;
+    ImageView mHistoryBtnTaskBar;
+    public static final int CHARTS_ACTIVITY_REQUEST_CODE = 2;
     FrameLayout mHistoryLayout1;
     FrameLayout mHistoryLayout2;
     FrameLayout mHistoryLayout3;
@@ -44,6 +47,7 @@ public class HistoryActivity extends AppCompatActivity {
         mHistoryBtnDay5 = findViewById(R.id.history_iv_day5);
         mHistoryBtnDay6 = findViewById(R.id.history_iv_day6);
         mHistoryBtnDay7 = findViewById(R.id.history_iv_day7);
+        mHistoryBtnTaskBar = findViewById(R.id.history_iv_task_bar);
 
         mHistoryLayout1 = findViewById(R.id.history_fl_1);
         mHistoryLayout2 = findViewById(R.id.history_fl_2);
@@ -62,6 +66,14 @@ public class HistoryActivity extends AppCompatActivity {
         setupViews(mHistoryLayout5, mHistoryBtnDay5, moods, 4);
         setupViews(mHistoryLayout6, mHistoryBtnDay6, moods, 5);
         setupViews(mHistoryLayout7, mHistoryBtnDay7, moods, 6);
+
+        mHistoryBtnTaskBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chartsActivityIntent = new Intent(HistoryActivity.this, ChartsActivity.class);
+                startActivityForResult(chartsActivityIntent, CHARTS_ACTIVITY_REQUEST_CODE);
+            }
+        });
 
     }
 
