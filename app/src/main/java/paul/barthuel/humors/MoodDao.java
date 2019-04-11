@@ -7,11 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.support.annotation.Nullable;
-
 import org.threeten.bp.LocalDate;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 

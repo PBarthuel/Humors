@@ -1,192 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:id="@+id/history_cl"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/history_cl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/history_tv_7"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Six_days_ago"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="blabla"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/faded_red"
-        app:layout_constraintHorizontal_bias="0"/>
+        tools:background="@color/faded_red" />
 
     <ImageView
         android:id="@+id/history_iv_day7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_comment_black_36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/history_tv_7"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_7"
         android:visibility="gone"
-        android:padding="16dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_7" />
 
     <TextView
         android:id="@+id/history_tv_6"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Five_days_ago"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="blabla"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/history_tv_7"
-        tools:background="@color/banana_yellow"
-        app:layout_constraintHorizontal_bias="0"/>
+        tools:background="@color/banana_yellow" />
 
     <ImageView
         android:id="@+id/history_iv_day6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_comment_black_36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/history_tv_6"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_6"
         android:visibility="gone"
-        android:padding="16dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_6" />
 
     <TextView
         android:id="@+id/history_tv_5"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Four_days_ago"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="blabla"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/history_tv_6"
-        tools:background="@color/light_sage"
-        app:layout_constraintHorizontal_bias="0"/>
+        tools:background="@color/light_sage" />
 
     <ImageView
         android:id="@+id/history_iv_day5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_comment_black_36dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/history_tv_5"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_5"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:padding="16dp"/>
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/history_tv_4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Three_days_ago"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="blabla"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/history_tv_5"
-        tools:background="@color/warm_grey"
-        app:layout_constraintHorizontal_bias="0"/>
+        tools:background="@color/warm_grey" />
 
     <ImageView
         android:id="@+id/history_iv_day4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_comment_black_36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/history_tv_4"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_4"
         android:visibility="gone"
-        android:padding="16dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_4" />
 
     <TextView
         android:id="@+id/history_tv_3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Two_days_ago"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="blabla"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/history_tv_4"
-        tools:background="@color/cornflower_blue_65"
-        app:layout_constraintHorizontal_bias="0"/>
+        tools:background="@color/cornflower_blue_65" />
 
     <ImageView
         android:id="@+id/history_iv_day3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_comment_black_36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/history_tv_3"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_3"
         android:visibility="gone"
-        android:padding="16dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_3" />
 
     <TextView
         android:id="@+id/history_tv_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Yesterday"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="blabla"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/history_tv_3"
-        tools:background="@color/faded_red"
-        app:layout_constraintHorizontal_bias="0"/>
+        tools:background="@color/faded_red" />
 
     <ImageView
         android:id="@+id/history_iv_day2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_comment_black_36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/history_tv_2"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_2"
         android:visibility="gone"
-        android:padding="16dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_2" />
 
     <TextView
         android:id="@+id/history_tv_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/Today"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="blabla"
         app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/history_tv_2"
-        tools:background="@color/banana_yellow"
-        app:layout_constraintHorizontal_bias="0"/>
+        tools:background="@color/banana_yellow" />
 
     <ImageView
         android:id="@+id/history_iv_day1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_comment_black_36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/history_tv_1"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_1"
         android:visibility="gone"
-        android:padding="16dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_1" />
 
     <TextView
         android:id="@+id/history_tv_charts"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/history_tv_1" />
 
     <ImageView
         android:id="@+id/history_iv_task_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:src="@drawable/ic_history_black_36dp"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_charts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/history_tv_charts"
-        app:layout_constraintBottom_toBottomOf="@id/history_tv_charts"
-        android:padding="16dp"/>
+        app:layout_constraintTop_toTopOf="@id/history_tv_charts" />
 
 </android.support.constraint.ConstraintLayout>

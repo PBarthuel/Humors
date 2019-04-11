@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 public class MainActivity extends AppCompatActivity implements
@@ -39,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements
         AndroidThreeTen.init(this);
 
         moodDao = new MoodDao(this);
-
-        Toast.makeText(this, "" + moodDao.getDailyMood(), Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_main);
 

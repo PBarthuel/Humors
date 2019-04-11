@@ -71,11 +71,6 @@ public class HistoryActivity extends AppCompatActivity {
         setupViews(mHistoryTextView6, mHistoryBtnDay6, moods, 5);
         setupViews(mHistoryTextView7, mHistoryBtnDay7, moods, 6);
 
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.clone(constraintLayout);
-        constraintSet.constrainPercentWidth(R.id.history_tv_7, moods.get(0).getMood().getPercent());
-        constraintSet.applyTo(constraintLayout);
-
         mHistoryBtnTaskBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

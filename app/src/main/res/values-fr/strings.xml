@@ -4,12 +4,12 @@
     <string name="content_description_smiley">smiley</string>
     <string name="content_description_comment_humors">comment humors</string>
     <string name="content_description_acces_history">acces history</string>
-    <string name="seven_days_ago">il y a 7 jours</string>
-    <string name="six_days_ago">il y a 6 jours</string>
-    <string name="five_days_ago">il y a 5 jours</string>
-    <string name="four_days_ago">il y a 4 jours</string>
-    <string name="three_days_ago">il y a 3 jours</string>
-    <string name="two_days_ago">il y a 2 jours</string>
-    <string name="one_days_ago">il y a 1 jours</string>
+    <string name="Today">Aujourd hui</string>
+    <string name="Yesterday">hier</string>
+    <string name="Two_days_ago">il y a 2 jours</string>
+    <string name="Three_days_ago">il y a 3 jours</string>
+    <string name="Four_days_ago">il y a 4 jours</string>
+    <string name="Five_days_ago">il y a 5 jours</string>
+    <string name="Six_days_ago">il y a 6 jours</string>
 
 </resources>
