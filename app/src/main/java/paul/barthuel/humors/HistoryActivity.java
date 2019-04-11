@@ -25,7 +25,6 @@ public class HistoryActivity extends AppCompatActivity {
     ImageView mHistoryBtnDay6;
     ImageView mHistoryBtnDay7;
     ImageView mHistoryBtnTaskBar;
-    public static final int CHARTS_ACTIVITY_REQUEST_CODE = 2;
     TextView mHistoryTextView1;
     TextView mHistoryTextView2;
     TextView mHistoryTextView3;
@@ -38,21 +37,20 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.temporary);
+        setContentView(R.layout.activity_history);
 
         constraintLayout = findViewById(R.id.history_cl);
 
         moodDao = new MoodDao(this);
-        /*
+
         mHistoryBtnDay1 = findViewById(R.id.history_iv_day1);
         mHistoryBtnDay2 = findViewById(R.id.history_iv_day2);
         mHistoryBtnDay3 = findViewById(R.id.history_iv_day3);
         mHistoryBtnDay4 = findViewById(R.id.history_iv_day4);
         mHistoryBtnDay5 = findViewById(R.id.history_iv_day5);
         mHistoryBtnDay6 = findViewById(R.id.history_iv_day6);
-        */
         mHistoryBtnDay7 = findViewById(R.id.history_iv_day7);
-        /*
+
         mHistoryBtnTaskBar = findViewById(R.id.history_iv_task_bar);
 
         mHistoryTextView1 = findViewById(R.id.history_tv_1);
@@ -61,11 +59,10 @@ public class HistoryActivity extends AppCompatActivity {
         mHistoryTextView4 = findViewById(R.id.history_tv_4);
         mHistoryTextView5 = findViewById(R.id.history_tv_5);
         mHistoryTextView6 = findViewById(R.id.history_tv_6);
-        */
         mHistoryTextView7 = findViewById(R.id.history_tv_7);
 
         final List<DailyMood> moods = new MoodDao(this).readSevenDaysHistory();
-        /*
+
         setupViews(mHistoryTextView1, mHistoryBtnDay1, moods, 0);
         setupViews(mHistoryTextView2, mHistoryBtnDay2, moods, 1);
         setupViews(mHistoryTextView3, mHistoryBtnDay3, moods, 2);
@@ -73,7 +70,7 @@ public class HistoryActivity extends AppCompatActivity {
         setupViews(mHistoryTextView5, mHistoryBtnDay5, moods, 4);
         setupViews(mHistoryTextView6, mHistoryBtnDay6, moods, 5);
         setupViews(mHistoryTextView7, mHistoryBtnDay7, moods, 6);
-        */
+
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(constraintLayout);
         constraintSet.constrainPercentWidth(R.id.history_tv_7, moods.get(0).getMood().getPercent());

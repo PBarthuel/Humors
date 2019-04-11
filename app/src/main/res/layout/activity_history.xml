@@ -1,195 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/history_cl"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".HistoryActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:id="@+id/history_fl_7"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/history_tv_7"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:background="@color/banana_yellow">
-
-        <ImageView
-            android:id="@+id/history_iv_day7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"
-            android:visibility="gone" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/seven_days_ago" />
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/history_fl_6"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="blabla"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/faded_red"
-        android:weightSum="1">
+        app:layout_constraintHorizontal_bias="0"/>
 
-        <ImageView
-            android:id="@+id/history_iv_day6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"
-            android:visibility="gone" />
+    <ImageView
+        android:id="@+id/history_iv_day7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_7"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_7"
+        android:visibility="gone"
+        android:padding="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/six_days_ago" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/history_fl_5"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/history_tv_6"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:background="@color/cornflower_blue_65">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="blabla"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintTop_toBottomOf="@id/history_tv_7"
+        tools:background="@color/banana_yellow"
+        app:layout_constraintHorizontal_bias="0"/>
 
-        <ImageView
-            android:id="@+id/history_iv_day5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"
-            android:visibility="gone"
-            tools:visibility="visible" />
+    <ImageView
+        android:id="@+id/history_iv_day6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_6"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_6"
+        android:visibility="gone"
+        android:padding="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/five_days_ago" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/history_fl_4"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/history_tv_5"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:background="@color/warm_grey">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="blabla"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintTop_toBottomOf="@id/history_tv_6"
+        tools:background="@color/light_sage"
+        app:layout_constraintHorizontal_bias="0"/>
 
-        <ImageView
-            android:id="@+id/history_iv_day4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"
-            android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/history_iv_day5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_5"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_5"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:padding="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/four_days_ago" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/history_fl_3"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/history_tv_4"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:background="@color/banana_yellow">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="blabla"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintTop_toBottomOf="@id/history_tv_5"
+        tools:background="@color/warm_grey"
+        app:layout_constraintHorizontal_bias="0"/>
 
-        <ImageView
-            android:id="@+id/history_iv_day3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"
-            android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/history_iv_day4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_4"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_4"
+        android:visibility="gone"
+        android:padding="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/three_days_ago" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/history_fl_2"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/history_tv_3"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:background="@color/faded_red">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="blabla"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintTop_toBottomOf="@id/history_tv_4"
+        tools:background="@color/cornflower_blue_65"
+        app:layout_constraintHorizontal_bias="0"/>
 
-        <ImageView
-            android:id="@+id/history_iv_day2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"
-            android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/history_iv_day3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_3"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_3"
+        android:visibility="gone"
+        android:padding="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/two_days_ago" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/history_fl_1"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/history_tv_2"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:background="@color/warm_grey">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="blabla"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintTop_toBottomOf="@id/history_tv_3"
+        tools:background="@color/faded_red"
+        app:layout_constraintHorizontal_bias="0"/>
 
-        <ImageView
-            android:id="@+id/history_iv_day1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:padding="16dp"
-            android:src="@drawable/ic_comment_black_36dp"
-            android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/history_iv_day2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_2"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_2"
+        android:visibility="gone"
+        android:padding="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/one_days_ago" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/history_fl_8"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/history_tv_1"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="0.65">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="blabla"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintTop_toBottomOf="@id/history_tv_2"
+        tools:background="@color/banana_yellow"
+        app:layout_constraintHorizontal_bias="0"/>
 
-        <ImageView
-            android:id="@+id/history_iv_task_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center"
-            android:padding="16dp"
-            android:src="@drawable/ic_history_black_36dp" />
+    <ImageView
+        android:id="@+id/history_iv_day1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_1"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_1"
+        android:visibility="gone"
+        android:padding="16dp"/>
 
-    </FrameLayout>
+    <TextView
+        android:id="@+id/history_tv_charts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintTop_toBottomOf="@id/history_tv_1" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/history_iv_task_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_history_black_36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/history_tv_charts"
+        app:layout_constraintBottom_toBottomOf="@id/history_tv_charts"
+        android:padding="16dp"/>
+
+</android.support.constraint.ConstraintLayout>
