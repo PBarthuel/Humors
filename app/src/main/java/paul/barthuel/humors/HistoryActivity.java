@@ -3,15 +3,11 @@ package paul.barthuel.humors;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.style.BackgroundColorSpan;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;

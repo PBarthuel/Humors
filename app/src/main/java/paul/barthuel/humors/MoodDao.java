@@ -7,9 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.support.annotation.Nullable;
+
 import org.threeten.bp.LocalDate;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MoodDao extends SQLiteOpenHelper {
@@ -19,7 +23,7 @@ public class MoodDao extends SQLiteOpenHelper {
     private static final String COLUMN_MOOD = "mood";
     private static final String COLUMN_DATE = "date";
 
-    public MoodDao (Context context) {
+    public MoodDao(Context context) {
         super(context, TABLE_NAME, null, 1);
     }
 
@@ -27,7 +31,7 @@ public class MoodDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         disableWal(db);
 
-        db.execSQL("CREATE TABLE "+TABLE_NAME+"("+COLUMN_COMMENT+" TEXT, "+COLUMN_MOOD+" TEXT, "+COLUMN_DATE+" TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_COMMENT + " TEXT, " + COLUMN_MOOD + " TEXT, " + COLUMN_DATE + " TEXT)");
     }
 
     @Override
@@ -73,20 +77,20 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Nullable
     public DailyMood getDailyMood() {
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE +" = \""+LocalDate.now().toString() + "\"", null, null, null, COLUMN_DATE+" DESC", "1");
-        if(cursor.moveToFirst()) {
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " = \"" + LocalDate.now().toString() + "\"", null, null, null, COLUMN_DATE + " DESC", "1");
+        if (cursor.moveToFirst()) {
             String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
             cursor.close();
             return new DailyMood(mood, comment);
-        }else {
+        } else {
             return null;
         }
     }
 
     public List<DailyMood> readSevenDaysHistory() {
         List<DailyMood> humors = new ArrayList<>();
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, COLUMN_DATE+" DESC", "7");
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " < '" + LocalDate.now().toString() + "'", null, null, null, COLUMN_DATE + " DESC", "7");
         while (cursor.moveToNext()) {
             String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
@@ -94,5 +98,21 @@ public class MoodDao extends SQLiteOpenHelper {
         }
         cursor.close();
         return humors;
+    }
+
+    public Map<Mood, Integer> totalHistoryMoods() {
+        Map<Mood, Integer> results = new HashMap<>(Mood.values().length);
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " < '" + LocalDate.now().toString() + "'", null, null, null, null);
+        while (cursor.moveToNext()) {
+            Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
+            Integer counts = results.get(mood);
+            if (counts == null) {
+                counts = 0;
+            }
+            counts++;
+            results.put(mood, counts);
+        }
+        cursor.close();
+        return results;
     }
 }
