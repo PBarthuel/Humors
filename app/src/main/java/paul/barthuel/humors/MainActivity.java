@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements
         // GestureDetector.OnGestureListener
         mDetector = new GestureDetectorCompat(this, this);
 
+        moodDao.insertTodayMood(new DailyMood(currentMood, null));
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         mCommentButton.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements
         currentMood = Mood.values()[ordinalMood];
         smiley.setImageResource(currentMood.getDrawableRes());
         mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
+        moodDao.insertTodayMood(new DailyMood(currentMood, null));
         return true;
     }
 

@@ -20,5 +20,6 @@ public class ChartsActivity extends AppCompatActivity {
         pieChartView = findViewById(R.id.charts_camembert);
 
         PieChartData data = new PieChartData();
+
     }
 }

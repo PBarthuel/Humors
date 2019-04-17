@@ -6,11 +6,13 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -81,7 +83,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     }
 
-    private void setupViews(View backGround, View commentary, final List<DailyMood> dailyMoods, final int index) {
+    private void setupViews(final View backGround, View commentary, final List<DailyMood> dailyMoods, final int index) {
         if (dailyMoods.size() > index) {
 
             ConstraintSet constraintSet = new ConstraintSet();
@@ -95,18 +97,12 @@ public class HistoryActivity extends AppCompatActivity {
             } else {
                 commentary.setVisibility(View.VISIBLE);
             }
-            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             commentary.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final TextView input = new EditText(HistoryActivity.this);
-                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT);
-                    input.setText(dailyMoods.get(index).getComment());
-                    input.setLayoutParams(lp);
-                    builder.setView(input)
-                            .show();
+                    if (dailyMoods.get(index).getComment() != null) {
+                        Toast.makeText(HistoryActivity.this, dailyMoods.get(index).getComment(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
