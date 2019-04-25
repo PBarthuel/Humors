@@ -1,11 +1,10 @@
 package paul.barthuel.humors;
 
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +27,7 @@ public class ChartsActivity extends AppCompatActivity {
         List<SliceValue> sliceValues = new ArrayList<>(Mood.values().length);
         Map<Mood, Integer> totalHistoryMoods = moodDao.totalHistoryMoods();
         for (Map.Entry<Mood, Integer> entry : totalHistoryMoods.entrySet()) {
-            SliceValue sliceValue = new SliceValue(entry.getValue(), ContextCompat.getColor(this,entry.getKey().getColorRes()));
+            SliceValue sliceValue = new SliceValue(entry.getValue(), ContextCompat.getColor(this, entry.getKey().getColorRes()));
             sliceValue.setLabel(entry.getKey().toString());
             sliceValues.add(sliceValue);
         }

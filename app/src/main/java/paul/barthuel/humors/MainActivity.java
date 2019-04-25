@@ -2,18 +2,20 @@ package paul.barthuel.humors;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 public class MainActivity extends AppCompatActivity implements
@@ -33,53 +35,40 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        AndroidThreeTen.init(this);
-
-        moodDao = new MoodDao(this);
-
         setContentView(R.layout.activity_main);
 
-        //Initialize the images from the layout
-        smiley = findViewById(R.id.main_iv_smiley);
-        smiley.setImageResource(currentMood.getDrawableRes());
+        init();
 
-        mainRelativeLayout = findViewById(R.id.main_rl_parent);
-        mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
+        upsertDailyMood();
 
-        mCommentButton = findViewById(R.id.main_iv_comment);
-        mHistoryButton = findViewById(R.id.main_iv_history);
-
-        // Instantiate the gesture detector with the
-        // application context and an implementation of
-        // GestureDetector.OnGestureListener
-        mDetector = new GestureDetectorCompat(this, this);
-
-        moodDao.insertTodayMood(new DailyMood(currentMood, null));
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         mCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
                 final DailyMood dailyMood = new MoodDao(MainActivity.this).getDailyMood();
-                final EditText input = new EditText(MainActivity.this);
+                final TextInputLayout input = new TextInputLayout(MainActivity.this);
+                final TextInputEditText inputEditText = new TextInputEditText(MainActivity.this);
+
+                inputEditText.setHint(R.string.enter_your_commentary);
+                input.addView(inputEditText);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
-                if(dailyMood != null) {
-                    input.setText(dailyMood.getComment());
+                if (dailyMood != null) {
+                    inputEditText.setText(dailyMood.getComment());
                 }
                 input.setLayoutParams(lp);
                 builder.setView(input)
-                        .setTitle("Enter your commentary :D")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.commentary)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                moodDao.insertTodayMood(new DailyMood(currentMood, input.getText().toString()));
+                                moodDao.insertTodayMood(new DailyMood(currentMood, inputEditText.getText().toString()));
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                             }
@@ -95,6 +84,37 @@ public class MainActivity extends AppCompatActivity implements
                 startActivityForResult(historyActivityIntent, HISTORY_ACTIVITY_REQUEST_CODE);
             }
         });
+    }
+
+    private void init() {
+        AndroidThreeTen.init(this);
+
+        moodDao = new MoodDao(this);
+
+        mDetector = new GestureDetectorCompat(this, this);
+
+        findViews();
+        bindViews();
+    }
+
+    private void upsertDailyMood() {
+        if (moodDao.getDailyMood() != null) {
+            moodDao.insertTodayMood(new DailyMood(currentMood, moodDao.getDailyMood().getComment()));
+        } else {
+            moodDao.insertTodayMood(new DailyMood(currentMood, null));
+        }
+    }
+
+    private void bindViews() {
+        smiley.setImageResource(currentMood.getDrawableRes());
+        mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
+    }
+
+    private void findViews() {
+        mCommentButton = findViewById(R.id.main_iv_comment);
+        mHistoryButton = findViewById(R.id.main_iv_history);
+        mainRelativeLayout = findViewById(R.id.main_rl_parent);
+        smiley = findViewById(R.id.main_iv_smiley);
     }
 
     @Override
@@ -116,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements
                            float velocityX, float velocityY) {
         Log.d(DEBUG_TAG, "onFling: " + velocityY);
         boolean getHappier = velocityY < 0;
+
         int ordinalMood;
         if (getHappier) {
             ordinalMood = currentMood.ordinal() + 1;
@@ -127,9 +148,9 @@ public class MainActivity extends AppCompatActivity implements
         } else if (ordinalMood > Mood.values().length - 1) {
             ordinalMood = Mood.values().length - 1;
         }
+
         currentMood = Mood.values()[ordinalMood];
-        smiley.setImageResource(currentMood.getDrawableRes());
-        mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
+        bindViews();
         moodDao.insertTodayMood(new DailyMood(currentMood, null));
         return true;
     }

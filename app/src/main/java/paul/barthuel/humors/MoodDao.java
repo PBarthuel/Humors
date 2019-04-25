@@ -9,6 +9,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.temporal.ChronoUnit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,7 +82,9 @@ public class MoodDao extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
+
             cursor.close();
+
             return new DailyMood(mood, comment);
         } else {
             return null;
@@ -90,19 +93,35 @@ public class MoodDao extends SQLiteOpenHelper {
 
     public List<DailyMood> readSevenDaysHistory() {
         List<DailyMood> humors = new ArrayList<>();
+
         Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " < '" + LocalDate.now().toString() + "'", null, null, null, COLUMN_DATE + " DESC", "7");
+
+        LocalDate previousDate = LocalDate.now();
         while (cursor.moveToNext()) {
             String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
+            LocalDate date = LocalDate.parse(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
+
+            long deltaDays = ChronoUnit.DAYS.between(date, previousDate) - 1;
+
+            for (long i = 0; i < deltaDays; i++) {
+                humors.add(new DailyMood(null, null, true));
+            }
+
             humors.add(new DailyMood(mood, comment));
+
+            previousDate = date;
         }
         cursor.close();
+
         return humors;
     }
 
     public Map<Mood, Integer> totalHistoryMoods() {
         Map<Mood, Integer> results = new HashMap<>(Mood.values().length);
+
         Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " < '" + LocalDate.now().toString() + "'", null, null, null, null);
+
         while (cursor.moveToNext()) {
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
             Integer counts = results.get(mood);
@@ -112,7 +131,9 @@ public class MoodDao extends SQLiteOpenHelper {
             counts++;
             results.put(mood, counts);
         }
+
         cursor.close();
+
         return results;
     }
 }

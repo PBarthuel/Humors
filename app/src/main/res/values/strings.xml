@@ -3,13 +3,23 @@
     <string name="content_description_smiley">smiley</string>
     <string name="content_description_comment_humors">comment humors</string>
     <string name="content_description_acces_history">acces history</string>
-    <string name="Today">today</string>
     <string name="Yesterday">yesterday</string>
     <string name="Two_days_ago">2 days ago</string>
     <string name="Three_days_ago">3 days ago</string>
     <string name="Four_days_ago">4 days ago</string>
     <string name="Five_days_ago">5 days ago</string>
     <string name="Six_days_ago">6 days ago</string>
-    <string name="This_is_a_graphique">This is a graphique</string>
+    <string name="Seven_days_ago">7 days ago</string>
+    <string name="This_is_a_graphic">This is a graphic</string>
+    <string name="Charts_history_button">Charts history button</string>
+    <string name="Commentary_button_yesterday">Commentary button yesterday</string>
+    <string name="Commentary_button_two_days_ago">Commentary button 2 days ago</string>
+    <string name="Commentary_button_three_days_ago">Commentary button 3 days ago</string>
+    <string name="Commentary_button_four_days_ago">Commentary button 4 days ago</string>
+    <string name="Commentary_button_five_days_ago">Commentary button 5 days ago</string>
+    <string name="Commentary_button_six_days_ago">Commentary button 6 days ago</string>
+    <string name="Commentary_button_seven_days_ago">Commentary button 7 days ago</string>
+    <string name="enter_your_commentary">Enter your commentary</string>
+    <string name="commentary">Commentary</string>
 
 </resources>
