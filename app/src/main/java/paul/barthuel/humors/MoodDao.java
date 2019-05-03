@@ -32,7 +32,9 @@ public class MoodDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         disableWal(db);
 
-        db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_COMMENT + " TEXT, " + COLUMN_MOOD + " TEXT, " + COLUMN_DATE + " TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_COMMENT + " TEXT," +
+                " " + COLUMN_MOOD + " TEXT," +
+                " " + COLUMN_DATE + " TEXT)");
     }
 
     @Override
@@ -78,7 +80,15 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Nullable
     public DailyMood getDailyMood() {
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " = \"" + LocalDate.now().toString() + "\"", null, null, null, COLUMN_DATE + " DESC", "1");
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME,
+                null,
+                COLUMN_DATE + " = \"" + LocalDate.now().toString() + "\"",
+                null,
+                null,
+                null,
+                COLUMN_DATE + " DESC",
+                "1");
+
         if (cursor.moveToFirst()) {
             String comment = cursor.getString(cursor.getColumnIndex(COLUMN_COMMENT));
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
@@ -94,7 +104,13 @@ public class MoodDao extends SQLiteOpenHelper {
     public List<DailyMood> readSevenDaysHistory() {
         List<DailyMood> humors = new ArrayList<>();
 
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " < '" + LocalDate.now().toString() + "'", null, null, null, COLUMN_DATE + " DESC", "7");
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME,
+                null,
+                COLUMN_DATE + " < '" + LocalDate.now().toString() + "'",
+                null,
+                null, null,
+                COLUMN_DATE + " DESC",
+                "7");
 
         LocalDate previousDate = LocalDate.now();
         while (cursor.moveToNext()) {
@@ -120,14 +136,16 @@ public class MoodDao extends SQLiteOpenHelper {
     public Map<Mood, Integer> totalHistoryMoods() {
         Map<Mood, Integer> results = new HashMap<>(Mood.values().length);
 
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, COLUMN_DATE + " < '" + LocalDate.now().toString() + "'", null, null, null, null);
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
             Mood mood = Mood.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_MOOD)));
             Integer counts = results.get(mood);
+
             if (counts == null) {
                 counts = 0;
             }
+
             counts++;
             results.put(mood, counts);
         }

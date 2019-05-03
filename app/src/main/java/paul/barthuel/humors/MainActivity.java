@@ -45,35 +45,7 @@ public class MainActivity extends AppCompatActivity implements
         mCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-                final DailyMood dailyMood = new MoodDao(MainActivity.this).getDailyMood();
-                final TextInputLayout input = new TextInputLayout(MainActivity.this);
-                final TextInputEditText inputEditText = new TextInputEditText(MainActivity.this);
-
-                inputEditText.setHint(R.string.enter_your_commentary);
-                input.addView(inputEditText);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT);
-                if (dailyMood != null) {
-                    inputEditText.setText(dailyMood.getComment());
-                }
-                input.setLayoutParams(lp);
-                builder.setView(input)
-                        .setTitle(R.string.commentary)
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                moodDao.insertTodayMood(new DailyMood(currentMood, inputEditText.getText().toString()));
-                            }
-                        })
-                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        })
-                        .show();
+                alertDialogueDispalyCommentary();
             }
         });
 
@@ -84,6 +56,40 @@ public class MainActivity extends AppCompatActivity implements
                 startActivityForResult(historyActivityIntent, HISTORY_ACTIVITY_REQUEST_CODE);
             }
         });
+    }
+
+    private void alertDialogueDispalyCommentary() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        final DailyMood dailyMood = new MoodDao(MainActivity.this).getDailyMood();
+        final TextInputLayout input = new TextInputLayout(MainActivity.this);
+        final TextInputEditText inputEditText = new TextInputEditText(MainActivity.this);
+
+        inputEditText.setHint(R.string.enter_your_commentary);
+        input.addView(inputEditText);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+
+        if (dailyMood != null) {
+            inputEditText.setText(dailyMood.getComment());
+        }
+        input.setLayoutParams(lp);
+        builder.setView(input)
+                .setTitle(R.string.commentary)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        moodDao.insertTodayMood(new DailyMood(currentMood, inputEditText.getText().toString()));
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .show();
     }
 
     private void init() {
