@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if (!inputEditText.getText().toString().equals(""))
                         moodDao.insertTodayMood(new DailyMood(currentMood, inputEditText.getText().toString()));
                     }
                 })
