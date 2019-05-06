@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements
         mCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialogueDispalyCommentary();
+                alertDialogueDisplayCommentary();
             }
         });
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
-    private void alertDialogueDispalyCommentary() {
+    private void alertDialogueDisplayCommentary() {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 

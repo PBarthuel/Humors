@@ -108,7 +108,8 @@ public class MoodDao extends SQLiteOpenHelper {
                 null,
                 COLUMN_DATE + " < '" + LocalDate.now().toString() + "'",
                 null,
-                null, null,
+                null,
+                null,
                 COLUMN_DATE + " DESC",
                 "7");
 

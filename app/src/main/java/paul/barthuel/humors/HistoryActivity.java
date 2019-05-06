@@ -60,7 +60,6 @@ public class HistoryActivity extends AppCompatActivity {
                 startActivity(chartsActivityIntent);
             }
         });
-
     }
 
     private void findViews() {
@@ -95,7 +94,7 @@ public class HistoryActivity extends AppCompatActivity {
             if (dailyMoods.get(index).isEmpty()) {
                 constraintSet.constrainPercentWidth(backGround.getId(), 0.5f);
                 backGround.setBackgroundResource(android.R.color.white);
-                commentary.setVisibility(View.GONE);
+                constraintSet.setVisibility(commentary.getId(), ConstraintSet.GONE);
             } else {
                 bindView(backGround, commentary, dailyMoods, index, constraintSet);
             }
@@ -111,9 +110,9 @@ public class HistoryActivity extends AppCompatActivity {
 
         //Show or hide the commentary button if there is or not a commentary
         if (dailyMoods.get(index).getComment() == null) {
-            commentary.setVisibility(View.GONE);
+            constraintSet.setVisibility(commentary.getId(), ConstraintSet.GONE);
         } else {
-            commentary.setVisibility(View.VISIBLE);
+            constraintSet.setVisibility(commentary.getId(), ConstraintSet.VISIBLE);
         }
 
         //Show the message from the day you click on
