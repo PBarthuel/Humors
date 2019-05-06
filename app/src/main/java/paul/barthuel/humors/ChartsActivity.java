@@ -24,8 +24,11 @@ public class ChartsActivity extends AppCompatActivity {
 
         moodDao = new MoodDao(this);
         pieChartView = findViewById(R.id.charts_camembert);
+
         List<SliceValue> sliceValues = new ArrayList<>(Mood.values().length);
+
         Map<Mood, Integer> totalHistoryMoods = moodDao.totalHistoryMoods();
+
         for (Map.Entry<Mood, Integer> entry : totalHistoryMoods.entrySet()) {
             SliceValue sliceValue = new SliceValue(entry.getValue(), ContextCompat.getColor(this, entry.getKey().getColorRes()));
             sliceValue.setLabel(entry.getKey().toString());

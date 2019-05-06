@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void init() {
+
         AndroidThreeTen.init(this);
 
         moodDao = new MoodDao(this);
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void upsertDailyMood() {
+
         if (moodDao.getDailyMood() != null) {
             moodDao.insertTodayMood(new DailyMood(currentMood, moodDao.getDailyMood().getComment()));
         } else {
@@ -112,11 +114,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void bindViews() {
+
         smiley.setImageResource(currentMood.getDrawableRes());
         mainRelativeLayout.setBackgroundResource(currentMood.getColorRes());
     }
 
     private void findViews() {
+
         mCommentButton = findViewById(R.id.main_iv_comment);
         mHistoryButton = findViewById(R.id.main_iv_history);
         mainRelativeLayout = findViewById(R.id.main_rl_parent);
@@ -140,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
+
         Log.d(DEBUG_TAG, "onFling: " + velocityY);
         boolean getHappier = velocityY < 0;
 

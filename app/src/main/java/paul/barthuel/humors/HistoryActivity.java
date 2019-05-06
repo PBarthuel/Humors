@@ -63,6 +63,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void findViews() {
+
         constraintLayout = findViewById(R.id.history_cl);
 
         mHistoryBtnDay1 = findViewById(R.id.history_iv_day1);
@@ -104,6 +105,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void bindView(View backGround, View commentary, final List<DailyMood> dailyMoods, final int index, ConstraintSet constraintSet) {
+
         constraintSet.constrainPercentWidth(backGround.getId(), dailyMoods.get(index).getMood().getPercent());
 
         backGround.setBackgroundResource(dailyMoods.get(index).getMood().getColorRes());

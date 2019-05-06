@@ -30,6 +30,7 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         disableWal(db);
 
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + COLUMN_COMMENT + " TEXT," +
@@ -50,6 +51,7 @@ public class MoodDao extends SQLiteOpenHelper {
     }
 
     private void disableWal(SQLiteDatabase db) {
+
         // Disables WAL. We don't need such a dev-unfriendly feature on a simple project.
         // With this, .wal and .smh files are no longer generated, and the db is easy to extract & open
         //
@@ -60,6 +62,7 @@ public class MoodDao extends SQLiteOpenHelper {
     }
 
     public void insertTodayMood(DailyMood dailyMood) {
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_COMMENT, dailyMood.getComment());
         contentValues.put(COLUMN_MOOD, dailyMood.getMood().name());
@@ -80,6 +83,7 @@ public class MoodDao extends SQLiteOpenHelper {
 
     @Nullable
     public DailyMood getDailyMood() {
+
         Cursor cursor = getReadableDatabase().query(TABLE_NAME,
                 null,
                 COLUMN_DATE + " = \"" + LocalDate.now().toString() + "\"",
@@ -102,6 +106,7 @@ public class MoodDao extends SQLiteOpenHelper {
     }
 
     public List<DailyMood> readSevenDaysHistory() {
+
         List<DailyMood> humors = new ArrayList<>();
 
         Cursor cursor = getReadableDatabase().query(TABLE_NAME,
@@ -135,6 +140,7 @@ public class MoodDao extends SQLiteOpenHelper {
     }
 
     public Map<Mood, Integer> totalHistoryMoods() {
+
         Map<Mood, Integer> results = new HashMap<>(Mood.values().length);
 
         Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
